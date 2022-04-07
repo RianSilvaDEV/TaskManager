@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TaskManagerAPI.Domain.Dtos
+namespace TaskManagerAPI.Domain.InputModels
 {
-    public class TaskDto
+    public class TaskInputModel
     {
         public string Name { get; set; }
 

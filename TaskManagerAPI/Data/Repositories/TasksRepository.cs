@@ -26,9 +26,9 @@ namespace TaskManagerAPI.Data.Repositories
             _tasks.InsertOne(task);
         }
 
-        public void Update(string Id, TaskEntity task)
+        public TaskEntity Update(string Id, TaskEntity task)
         {
-            _tasks.ReplaceOne(task => task.Id == Id, task);
+            return _tasks.FindOneAndReplace(task => task.Id == Id, task);
         }
 
         public void Delete(string Id)

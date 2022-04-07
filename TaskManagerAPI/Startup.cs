@@ -9,6 +9,7 @@ using TaskManagerAPI.Data.Configurations;
 using TaskManagerAPI.Data.Interfaces.IConfigurations;
 using TaskManagerAPI.Data.Interfaces.IRepositories;
 using TaskManagerAPI.Data.Repositories;
+using TaskManagerAPI.Domain.AutoMapper;
 
 namespace TaskManagerAPI
 {
@@ -23,12 +24,12 @@ namespace TaskManagerAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<DatabaseConfig>(Configuration.GetSection(nameof(DatabaseConfig)));//
+            services.Configure<DatabaseConfig>(Configuration.GetSection(nameof(DatabaseConfig)));
+
             services.AddSingleton<IDatabaseConfig>(sp => sp.GetRequiredService<IOptions<DatabaseConfig>>().Value);
             services.AddSingleton<ITasksRepository,TasksRepository>();
 
-
-
+            services.AddAutoMapper(typeof(TaskProfile));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

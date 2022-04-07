@@ -42,3 +42,9 @@ C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\obj\Debug\net5.0\TaskMa
 C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\obj\Debug\net5.0\ref\TaskManagerAPI.dll
 C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\obj\Debug\net5.0\TaskManagerAPI.pdb
 C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\obj\Debug\net5.0\TaskManagerAPI.genruntimeconfig.cache
+C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Rian\source\repos\TaskManagerAPI\TaskManagerAPI\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

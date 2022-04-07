@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using TaskManagerAPI.Data.Interfaces.IRepositories;
-using TaskManagerAPI.Domain.Dtos;
+using TaskManagerAPI.Domain.InputModels;
+using TaskManagerAPI.Domain.Views;
 using TaskManagerAPI.Entities;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TaskManagerAPI.Controllers
 {
@@ -12,11 +11,13 @@ namespace TaskManagerAPI.Controllers
     [ApiController]
     public class TasksController : ControllerBase
     {
-        ITasksRepository _taskRepository;
+        private readonly ITasksRepository _taskRepository;
+        private readonly IMapper _mapper;
 
-        public TasksController(ITasksRepository taskRepository)
+        public TasksController(ITasksRepository taskRepository, IMapper mapper)
         {
             _taskRepository = taskRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -31,30 +32,26 @@ namespace TaskManagerAPI.Controllers
             if(string.IsNullOrEmpty(id))
                 return NotFound();
            
-            return Ok(_taskRepository.Get(id));
+            return Ok(_mapper.Map<TaskView>(_taskRepository.Get(id)));
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] TaskDto newTask)
+        public IActionResult Post([FromBody] TaskInputModel newTask)
         {
-            var task = new TaskEntity(newTask.Name,newTask.Details);
+            var task = _mapper.Map<TaskEntity>(newTask);
 
              _taskRepository.Add(task);
             return Created("", task);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] TaskEntity Task, string id)
+        public IActionResult Put([FromBody] TaskInputModel task, string id)
         {
-            var existingTask = _taskRepository.Get(id);
-
-            if (existingTask == null) return NotFound();
-
-             existingTask.UpdateTask(Task.Name, Task.Details, Task.finished);
+            if ( _taskRepository.Get(id) == null) return NotFound();
             
-            _taskRepository.Update(id, existingTask);
+            _taskRepository.Update(id, _mapper.Map<TaskEntity>(task));
 
-            return Ok(existingTask);
+            return Ok(task);
         }
 
         [HttpDelete("{id}")]
