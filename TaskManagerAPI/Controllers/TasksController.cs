@@ -44,12 +44,12 @@ namespace TaskManagerAPI.Controllers
             return Created("", task);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put([FromBody] TaskInputModel task, string id)
+        [HttpPut]
+        public IActionResult Put([FromBody] TaskInputModel task)
         {
-            if ( _taskRepository.Get(id) == null) return NotFound();
+            if ( _taskRepository.Get(task.Id) == null) return NotFound();
             
-            _taskRepository.Update(id, _mapper.Map<TaskEntity>(task));
+            _taskRepository.Update(_mapper.Map<TaskEntity>(task));
 
             return Ok(task);
         }

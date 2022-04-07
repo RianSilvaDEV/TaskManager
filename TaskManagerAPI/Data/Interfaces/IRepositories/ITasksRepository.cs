@@ -10,7 +10,7 @@ namespace TaskManagerAPI.Data.Interfaces.IRepositories
     {
         void Add(TaskEntity task);
 
-        TaskEntity Update(string Id, TaskEntity task);
+        TaskEntity Update(TaskEntity task);
 
         void Delete(string Id);
 
